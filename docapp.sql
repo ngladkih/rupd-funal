@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Фев 03 2017 г., 09:22
--- Версия сервера: 10.1.16-MariaDB
--- Версия PHP: 5.6.24
+-- Время создания: Май 22 2017 г., 08:26
+-- Версия сервера: 10.1.10-MariaDB
+-- Версия PHP: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -225,6 +225,26 @@ CREATE TABLE `practical` (
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `protocol`
+--
+
+CREATE TABLE `protocol` (
+  `id` int(11) NOT NULL,
+  `number` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `department_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `protocol`
+--
+
+INSERT INTO `protocol` (`id`, `number`, `date`, `department_id`) VALUES
+(1, 10, '2016-12-16', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `source`
 --
 
@@ -273,7 +293,8 @@ CREATE TABLE `subject` (
   `can` text NOT NULL,
   `own` text NOT NULL,
   `features` text NOT NULL,
-  `module_id` int(11) NOT NULL
+  `module_id` int(11) NOT NULL,
+  `town` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -296,7 +317,15 @@ CREATE TABLE `teacher` (
 
 INSERT INTO `teacher` (`id`, `fio`, `degree`, `title`, `post`) VALUES
 (1, 'Стариченко Борис Евгеньевич', 'доктор педагогических наук', 'профессор', 'заведующий кафедрой'),
-(2, 'Кудрявцев Александр Владимирович', 'кандидат педагогических наук', 'доцент', 'доцент кафедры');
+(2, 'Кудрявцев Александр Владимирович', 'кандидат педагогических наук', 'доцент', 'доцент кафедры'),
+(3, 'Слепухин Александр Владимирович', 'кандидат педагогических наук', 'доцент', 'доцент кафедры'),
+(4, 'Сардак Любовь Владимировна', 'кандидат педагогических наук', 'доцент ', 'доцент кафедры'),
+(5, 'Грушевская Вероника Юлдашевна', 'кандидат филологических наук', 'доцент', 'доцент кафедры ИКТ в образовании ИМИиИТ'),
+(6, 'Мамонтова Марина Юрьевна', 'кандидат физико-математических наук', 'доцент', 'доцент кафедры'),
+(7, 'Стариченко Евгений Борисович', 'кандидат педагогических наук', 'доцент', 'доцент кафедры'),
+(8, 'Старкова Людмила Николаевна', '-', '-', 'старший преподаватель'),
+(9, 'Арбузов Сергей Сергеевич', 'кандидат педагогических наук', '-', 'ассистент'),
+(10, 'Волкова Сусанна Борисовна', '-', '-', 'учебный мастер');
 
 -- --------------------------------------------------------
 
@@ -391,6 +420,12 @@ ALTER TABLE `practical`
   ADD KEY `theme_id` (`theme_id`);
 
 --
+-- Индексы таблицы `protocol`
+--
+ALTER TABLE `protocol`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `source`
 --
 ALTER TABLE `source`
@@ -450,12 +485,12 @@ ALTER TABLE `form_learn`
 -- AUTO_INCREMENT для таблицы `found`
 --
 ALTER TABLE `found`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT для таблицы `independent`
 --
 ALTER TABLE `independent`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT для таблицы `institute`
 --
@@ -465,12 +500,12 @@ ALTER TABLE `institute`
 -- AUTO_INCREMENT для таблицы `laboratory`
 --
 ALTER TABLE `laboratory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT для таблицы `lectures`
 --
 ALTER TABLE `lectures`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT для таблицы `marks`
 --
@@ -480,27 +515,32 @@ ALTER TABLE `marks`
 -- AUTO_INCREMENT для таблицы `practical`
 --
 ALTER TABLE `practical`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT для таблицы `protocol`
+--
+ALTER TABLE `protocol`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT для таблицы `source`
 --
 ALTER TABLE `source`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT для таблицы `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT для таблицы `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT для таблицы `theme`
 --
 ALTER TABLE `theme`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
